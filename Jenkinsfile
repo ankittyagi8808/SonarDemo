@@ -1,5 +1,5 @@
 def gitBranch = "${env.CHANGE_BRANCH}"
-if (!gitBranch){
+if (!gitBranch?.trim()){
 gitBranch = "${env.BRANCH_NAME}"
 }
 node {
