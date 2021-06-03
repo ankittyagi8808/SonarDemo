@@ -1,7 +1,10 @@
-def gitBranch = "${env.CHANGE_BRANCH}"
-if (gitBranch == null){
-gitBranch = "${env.BRANCH_NAME}"
-}
+def gitBranch = "${env.BRANCH_NAME}"
+if (gitBranch == 'master') {
+    } else if (gitBranch.startsWith('PR')) {
+      gitBranch = "${env.CHANGE_BRANCH}"
+    } else {
+      // some other branch
+    }
 node {
     def mvnHome
     stage('Preparation') { // for display purposes
@@ -27,9 +30,13 @@ node {
       withSonarQubeEnv('SonarQube') {
         withEnv(["MVN_HOME=$mvnHome"]) {
             sonarurl = "http://localhost:9000" 
-           
-
+            check = "${env.BRANCH_NAME}"
+           if(check.startsWith('PR'))
+           {
+           bat(/"%MVN_HOME%\bin\mvn" -X clean package sonar:sonar  -Dsonar.host.url=$sonarurl -Dsonar.branch.name="${gitBranch}" -Dsonar.pullrequest.key="${env.BRANCH_NAME}"-Dsonar.pullrequest.base="master" -Dsonar.login=a6d0ae150681c139b43ec2244bed8a2b2543fc0c/)
+           }else{
       bat(/"%MVN_HOME%\bin\mvn" -X clean package sonar:sonar  -Dsonar.host.url=$sonarurl -Dsonar.branch.name="${gitBranch}" -Dsonar.login=a6d0ae150681c139b43ec2244bed8a2b2543fc0c/)
+    }
     }
     }// submitted SonarQube taskId is automatically attached to the pipeline context
   }
