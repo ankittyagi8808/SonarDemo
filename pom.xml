@@ -104,7 +104,7 @@
 		 <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.7.0.1746</version>
+          <version>3.9.0.2155</version>
         </plugin>
 		  <plugin>
           <groupId>org.jacoco</groupId>
@@ -123,7 +123,6 @@
                 <sonar.host.url>
                   http://localhost:9000
                 </sonar.host.url>
-				<sonar.login>8d44d2300ff3fd40e4ba3c2881fbbf863e177ae3</sonar.login>
 				<sonar.projectKey>com.qrux:discussion-forum</sonar.projectKey>
 				<sonar.projectName>demo</sonar.projectName>
             </properties>
