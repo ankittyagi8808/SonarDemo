@@ -1,4 +1,7 @@
 def gitBranch = "${env.CHANGE_BRANCH}"
+if (!gitBranch){
+gitBranch = "${env.BRANCH_NAME}"
+}
 node {
     def mvnHome
     stage('Preparation') { // for display purposes
