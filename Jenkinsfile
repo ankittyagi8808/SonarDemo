@@ -33,7 +33,7 @@ node {
             check = "${env.BRANCH_NAME}"
            if(check.startsWith('PR'))
            {
-           bat(/"%MVN_HOME%\bin\mvn" -X clean package sonar:sonar  -Dsonar.host.url=$sonarurl -Dsonar.branch="${gitBranch}" -Dsonar.pullrequest.key="${env.BRANCH_NAME}" -Dsonar.pullrequest.base="master" -Dsonar.login=a6d0ae150681c139b43ec2244bed8a2b2543fc0c/)
+           bat(/"%MVN_HOME%\bin\mvn" -X clean package sonar:sonar  -Dsonar.host.url=$sonarurl -Dsonar.pullrequest.branch="${gitBranch}" -Dsonar.pullrequest.key="${env.BRANCH_NAME}" -Dsonar.pullrequest.base="master" -Dsonar.login=a6d0ae150681c139b43ec2244bed8a2b2543fc0c/)
            }else{
       bat(/"%MVN_HOME%\bin\mvn" -X clean package sonar:sonar  -Dsonar.host.url=$sonarurl -Dsonar.branch.name="${gitBranch}" -Dsonar.login=a6d0ae150681c139b43ec2244bed8a2b2543fc0c/)
     }
