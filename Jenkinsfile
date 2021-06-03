@@ -4,7 +4,7 @@ node {
     stage('Preparation') { // for display purposes
         // Get some code from a GitHub repository
      //   git 'https://github.com/ankittyagi8808/SonarDemo.git'
-      checkout([$class: 'GitSCM', branches: [[name: '${gitBranch}']], extensions: [], userRemoteConfigs: [[credentialsId: 'e5132d10-1f6b-4bb8-856f-dc71e5942c97', url: 'https://github.com/ankittyagi8808/SonarDemo.git']]])
+      checkout([$class: 'GitSCM', branches: [[name: "${gitBranch}"]], extensions: [], userRemoteConfigs: [[credentialsId: 'e5132d10-1f6b-4bb8-856f-dc71e5942c97', url: 'https://github.com/ankittyagi8808/SonarDemo.git']]])
         // Get the Maven tool.
         // ** NOTE: This 'M3' Maven tool must be configured
         // **       in the global configuration.
