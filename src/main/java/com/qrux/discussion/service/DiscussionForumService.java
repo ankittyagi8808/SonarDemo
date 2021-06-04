@@ -47,6 +47,22 @@ public class DiscussionForumService {
 		topicRepository.save(topic);
 		return mapper.map(topic, TopicDto.class);
 	}
+	
+	public TopicDto newTopic(final String topicDescription,final int forumId,final long userId) {
+		Topic topic = new Topic();
+		topic.setTopicDescription(topicDescription);
+		// topic.setCreatedBy(userId);
+		Forum forum = new Forum();
+		forum.setForumId(forumId);
+		topic.setForm(forum);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		topic.setCreateDate(timestamp);
+		topic.setLastUpdateDate(timestamp);
+		topic.setStatus("A");
+		topic.setLastUpdateBy(userId);
+		topicRepository.save(topic);
+		return mapper.map(topic, TopicDto.class);
+	}
 
 	public TopicDto getTopicById(final int discussionId) {
 		Topic topic = topicRepository.getTopicById(Long.valueOf(discussionId));
